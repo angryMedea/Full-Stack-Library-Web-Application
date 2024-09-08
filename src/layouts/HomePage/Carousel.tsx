@@ -1,0 +1,103 @@
+export const Carousel = () => {
+    return (
+        // mt-5: set margin top as 5
+        // in jsx,inline style require two sets of curly braces{}
+        // the outer {} is used to embed js expressions
+        // the inner {} is used to define a js object, which contains
+        // the style properties and their corresponding values
+        <div className="container mt-5" style={{ height: 550 }}>
+            <div className="homepage-carsousel-title">
+                <h3>Find your next "I stayed up too late reading" book.</h3>
+            </div>
+            {/* data-bs-interval='false': used to control the carousel component's behaviours
+                which its disables automatic cycling.
+                d-none: a display utility class, it hides the element completely making the carousel
+                invisible on all screen sizes by default
+                d-lg-block: works with d-none and is a responsive display utility, making the element 
+                visible only on larger(lg) screens and above. That means in smaller screens like iphone,
+                the carousel elements are invisible
+            */}
+            <div id="carouselExampleControls" className="carousel carousel-dark slide mt-5
+            d-none d-lg-block" data-bs-interval='false'>
+
+                {/* Desktop */}
+                <div className="carousel-inner">
+                    <div className="carousel-item active">
+                        <div className="row d-flex justify-content-center align-items-center">
+                            {/* these 'col-xxx' classes define the column size for different screen sizes based on Bootstrap's grid system */}
+                            {/* this is a responsive design */}
+                            <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-3" >
+                                {/* Using require(), which is a js snippet, helps ensure that images resources are handled correctly
+                                during the build...and better manage and optimize these static processes */}
+                                <div className="text-center">
+                                <img
+                                    src={require('./../../Images/BooksImages/book-luv2code-1000.png')}
+                                    width='151'
+                                    height='233'
+                                    alt="book"
+                                />
+                                <h6 className="mt-2">Book</h6>
+                                <p>Page Turner</p>
+                                <a className="btn main-color text-white" href="#">Reserve</a>
+                                </div >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="carousel-item">
+                        <div className="row d-flex justify-content-center align-items-center">
+                            {/* these 'col-xxx' classes define the column size for different screen sizes based on Bootstrap's grid system */}
+                            {/* this is a responsive design */}
+                            <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-3" >
+                                {/* Using require(), which is a js snippet, helps ensure that images resources are handled correctly
+                                during the build...and better manage and optimize these static processes */}
+                                <div className="text-center">
+                                <img
+                                    src={require('./../../Images/BooksImages/book-luv2code-1000.png')}
+                                    width='151'
+                                    height='233'
+                                    alt="book"
+                                />
+                                <h6 className="mt-2">Book</h6>
+                                <p>Page Turner</p>
+                                <a className="btn main-color text-white" href="#">Reserve</a>
+                                </div >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button className="carousel-control-prev" type="button"
+                    data-bs-target='#carouselExampleControls' data-bs-slide='prev'>
+                    <span className="carousel-control-prev-icon" aria-hidden='true'></span>
+                    <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="carousel-control-next" type="button"
+                    data-bs-target='#carouselExampleControls' data-bs-slide='next'>
+                    <span className="carousel-control-next-icon" aria-hidden='true'></span>
+                    <span className="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            {/*Mobole*/}
+            <div className="d-lg-none mt-3">
+                <div className="row d-flex justify-content-center align-items-center">
+                    <div className="text-center">
+                        <img src={require('./../../Images/BooksImages/book-luv2code-1000.png')}
+                            width='151'
+                            height='233'
+                            alt='book'
+                        />
+                        <h6 className="mt-2">
+                            <b>Book</b>
+                        </h6>
+                        <p>Page Turner</p>
+                        <a className="btn main-color text-white" href="#">Reserve</a>
+                    </div>
+                </div>
+            </div>
+            <div className="homepage-carousel-title mt-3">
+                <a className="btn btn-outline-secondary btn-lg" href="#">View More</a>
+            </div>
+        </div>
+    )
+}
