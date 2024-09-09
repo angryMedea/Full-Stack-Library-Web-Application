@@ -9,7 +9,7 @@ export const ReturnBook = () => {
                                 during the build...and better manage and optimize these static processes */}
             <div className="text-center">
                 <img
-                    src={require('./../../Images/BooksImages/book-luv2code-1000.png')}
+                    src={require('./../../../Images/BooksImages/book-luv2code-1000.png')}
                     width='151'
                     height='233'
                     alt="book"
