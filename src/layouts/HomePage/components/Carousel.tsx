@@ -1,7 +1,55 @@
 import { ReturnBook } from "./ReturnBook"
 import { useEffect, useState } from "react"
+import BookModel from "../../../models/BookModel"
+import { title } from "process"
 
 export const Carousel = () => {
+
+    const [books, setBooks] = useState<BookModel[]>([])
+    const [isLoading, setIsLoading] = useState(true);
+    const [httpError, setHttpError] = useState(null)
+
+    useEffect(() => {
+        const fetchBooks = async () => {
+            const baseUrl: string = "http://localhost:8080/api/books"
+            // the carousel conponent includes 9 books
+            const url: string = `${baseUrl}?page=0&size=9`
+
+            const response = await fetch(url)
+
+            if(!response.ok){
+                throw new Error('Something went wrong!')
+            }
+
+            const responseJson = await response.json()
+
+            const responseData = responseJson._embedded.books
+
+            const loadedBooks: BookModel[] = []
+
+            for(const key in responseData){
+                loadedBooks.push({
+                    id: responseData[key].id,
+                    title: responseData[key].title,
+                    author: responseData[key].author,
+                    description: responseData[key].description,
+                    copies: responseData[key].copies,
+                    copiesAvailable: responseData[key].copiesAvailable,
+                    category: responseData[key].category,
+                    img:responseData[key].img
+                })
+            }
+
+            setBooks(loadedBooks)
+            setIsLoading(false)
+        }
+
+        fetchBooks().catch((error:any) => {
+            setIsLoading(false)
+            setHttpError(error.message)
+        })
+    }, []);
+
     return (
         // mt-5: set margin top as 5
         // in jsx,inline style require two sets of curly braces{}
@@ -27,17 +75,17 @@ export const Carousel = () => {
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <div className="row d-flex justify-content-center align-items-center">
-                           <ReturnBook/>
-                           <ReturnBook/>
-                           <ReturnBook/>
+                            <ReturnBook />
+                            <ReturnBook />
+                            <ReturnBook />
                         </div>
                     </div>
 
                     <div className="carousel-item">
                         <div className="row d-flex justify-content-center align-items-center">
-                            <ReturnBook/>
-                            <ReturnBook/>
-                            <ReturnBook/>
+                            <ReturnBook />
+                            <ReturnBook />
+                            <ReturnBook />
                         </div>
                     </div>
                 </div>
@@ -56,7 +104,7 @@ export const Carousel = () => {
             {/*Mobole*/}
             <div className="d-lg-none mt-3">
                 <div className="row d-flex justify-content-center align-items-center">
-                    <ReturnBook/>
+                    <ReturnBook />
                 </div>
             </div>
             <div className="homepage-carousel-title mt-3">
