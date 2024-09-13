@@ -9,20 +9,36 @@ export const Carousel = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null)
 
+
+    // check the note on JS asynchronous functions
     useEffect(() => {
+        // async function will return Promise object
+        // so fetchBooks is a promise
         const fetchBooks = async () => {
             const baseUrl: string = "http://localhost:8080/api/books"
             // the carousel conponent includes 9 books
             const url: string = `${baseUrl}?page=0&size=9`
 
-            const response = await fetch(url)
 
+            //await keyword can only be used inside the async function
+            //await keyword means fetch() is another async function and also returns a promise
+            // and it directly returns the final result after the promise is executed
+
+            /**
+             * Here, fetch() also returns a Promise and will be parsed as a Response when succeed
+             * and rejected when net error occurs(200 state) and throw the exception
+             */
+            const response = await fetch(url)
+            
+            // fetch() does not throw exceptions when the brower returns 4xx or 5xx state
+            // so we need to check response.ok manually
             if(!response.ok){
                 throw new Error('Something went wrong!')
             }
 
             const responseJson = await response.json()
 
+            //abstract a book array from wrapped _embedded fields
             const responseData = responseJson._embedded.books
 
             const loadedBooks: BookModel[] = []
@@ -39,7 +55,8 @@ export const Carousel = () => {
                     img:responseData[key].img
                 })
             }
-
+            
+            // useState hooks will update these value
             setBooks(loadedBooks)
             setIsLoading(false)
         }
@@ -49,6 +66,22 @@ export const Carousel = () => {
             setHttpError(error.message)
         })
     }, []);
+
+    if(isLoading){
+        return (
+            <div className="container m-5">
+                <p>Loading..</p>
+            </div>
+        )
+    }
+
+    if(httpError){
+        return (
+            <div className="container m-5">
+                <p>{httpError}</p>
+            </div>
+        )
+    }
 
     return (
         // mt-5: set margin top as 5
