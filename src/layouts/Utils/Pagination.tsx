@@ -27,7 +27,7 @@ export const Pagination : React.FC<{currentPage: number,
         }else{
             pageNumbers.push(props.currentPage - 1)
         }
-    }
+    
 
     // 再加入当前的页码，此时数组中最多有三个页码，当前页码前的页码和当前的页码
     pageNumbers.push(props.currentPage)
@@ -44,6 +44,8 @@ export const Pagination : React.FC<{currentPage: number,
     if(props.totalPages >= props.currentPage + 2){
         pageNumbers.push(props.currentPage + 2)
     }
+
+}
 
     return (
         <nav aria-label='...'>
