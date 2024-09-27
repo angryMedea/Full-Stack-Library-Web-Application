@@ -8,25 +8,26 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 export const App = () => {
   return (
-    <div>
+    <div className='d-flex flex-column min-vh-100'>
       <Navbar />
       {/* Switch tag ensure there is only one route component rendered each time */}
-      <Switch>
-        {/* exact ensure a strict matching with the url, bec react rout v5 use partial matching*/}
-        <Route path='/' exact>
-          <Redirect to='/home'/>
-        </Route>
+      <div className='flex-grow-1'>
+        <Switch>
+          {/* exact ensure a strict matching with the url, bec react rout v5 use partial matching*/}
+          <Route path='/' exact>
+            <Redirect to='/home' />
+          </Route>
 
-        <Route path='/home'>
-          <HomePage />
-        </Route>
+          <Route path='/home'>
+            <HomePage />
+          </Route>
 
-        <Route path='/search'>
-          <SearchBooksPage />
-        </Route>
-      </Switch>
-
+          <Route path='/search'>
+            <SearchBooksPage />
+          </Route>
+        </Switch>
+      </div>
       <Footer />
     </div>
-  );
+  )
 }

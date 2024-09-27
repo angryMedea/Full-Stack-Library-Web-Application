@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom"
+
 export const Navbar = () => {
     return  (
         // py-3:padding-y，adds padding to the top and bottom (vertical) of an element.
@@ -18,10 +20,10 @@ export const Navbar = () => {
       <div className='collapse navbar-collapse' id='navbarNavDropdown'>
         <ul className='navbar-nav'>
           <li className='nav-item'>
-            <a className='nav-link' href='#'>Home</a>
+            <NavLink className='nav-link' to='/home'>Home</NavLink>
           </li>
           <li className='nav-item'>
-            <a className='nav-link' href='#'>Search Books</a>
+            <NavLink className='nav-link' to='/search'>Search Books</NavLink>
           </li>
         </ul>
         {/* ms-auto: automatically set the margin from the left side and align with the right side */}

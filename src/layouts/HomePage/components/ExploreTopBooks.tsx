@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export const ExploreTopBooks = () => {
     return(
         // p-5: set padding as 5
@@ -16,9 +18,9 @@ export const ExploreTopBooks = () => {
                     */}
                     <h1 className="display-5 fw-bold">Find your next adventure</h1>
                     <p className="col-md-8 fs-4">Where would you like to go next?</p>
-                    <a type="button" className="btn main-color btn-lg text-white" href="#">
+                    <Link type="button" className="btn main-color btn-lg text-white" to="/search">
                         Explore top books
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
