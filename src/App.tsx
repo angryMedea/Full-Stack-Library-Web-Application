@@ -4,14 +4,29 @@ import { Navbar } from './layouts/NavbarAndFooter/Navbar';
 import { Footer } from './layouts/NavbarAndFooter/Footer';
 import { HomePage } from './layouts/HomePage/HomePage';
 import { SearchBooksPage } from './layouts/SearchBooksPage/SearchBooksPage';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 export const App = () => {
   return (
     <div>
       <Navbar />
-      {/* <HomePage/> */}
-      <SearchBooksPage/>
-      <Footer/>
+      {/* Switch tag ensure there is only one route component rendered each time */}
+      <Switch>
+        {/* exact ensure a strict matching with the url, bec react rout v5 use partial matching*/}
+        <Route path='/' exact>
+          <Redirect to='/home'/>
+        </Route>
+
+        <Route path='/home'>
+          <HomePage />
+        </Route>
+
+        <Route path='/search'>
+          <SearchBooksPage />
+        </Route>
+      </Switch>
+
+      <Footer />
     </div>
   );
 }
