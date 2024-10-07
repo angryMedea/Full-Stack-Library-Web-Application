@@ -4,6 +4,7 @@ import { SpinnerLoading } from "../Utils/SpinnerLoading"
 import { StarsReview } from "../Utils/StarsReview"
 import { CheckoutAndReviewBox } from "./CheckoutAndReviewBox"
 import ReviewModel from "../../models/ReviewModel"
+import { LatestReviews } from "./LatestReviews"
 
 export const BookCheckoutPage = () => {
 
@@ -95,6 +96,7 @@ export const BookCheckoutPage = () => {
                 })
                 weightedStarReviews = weightedStarReviews + responseData[key].rating
             }
+
             if (loadedReviews) {
                 const round = (Math.round((weightedStarReviews / loadedReviews.length) * 2) / 2).toFixed(1);
                 setTotalStars(Number(round));
@@ -109,9 +111,7 @@ export const BookCheckoutPage = () => {
             setHttpError(error.message);
         })
 
-    }, []
-
-    )
+    }, [])
 
     if (isLoading || isLoadingReview) {
         return (
@@ -149,12 +149,14 @@ export const BookCheckoutPage = () => {
                             <h2>{book?.title}</h2>
                             <h5 className="text-primary">{book?.author}</h5>
                             <p className="lead">{book?.description}</p>
-                            <StarsReview rating={4} size={32}/>
+                            <StarsReview rating={totalStars} size={32}/>
                         </div>
                     </div>
                         <CheckoutAndReviewBox book={book} mobile={false}/>
                 </div>
                 <hr />
+                <LatestReviews reviews={reviews} bookId={book?.id} mobile={false} />
+
             </div>
             {/* show img in small screen */}
             <div className="container d-lg-none mt-5">
@@ -171,11 +173,13 @@ export const BookCheckoutPage = () => {
                         <h2>{book?.title}</h2>
                         <h5 className="text-primary">{book?.author}</h5>
                         <p className="lead">{book?.description}</p>
-                        <StarsReview rating={4} size={32}/>
+                        <StarsReview rating={totalStars} size={32}/>
                     </div>
                 </div>
                 <CheckoutAndReviewBox book={book} mobile={true}/>
-                    <hr/>
+                <hr/>
+                <LatestReviews reviews={reviews} bookId={book?.id} mobile={true} />
+
             </div>
         </div>
     )
