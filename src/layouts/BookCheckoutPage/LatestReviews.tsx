@@ -24,7 +24,7 @@ export const LatestReviews: React.FC<{
                         <div className='m-3'>
                             <Link type='button' className='btn main-color btn-md text-white'
                                 to='#'>
-                                Reach all reviews.
+                                Reach all reviews
                             </Link>
                         </div>
                     </>

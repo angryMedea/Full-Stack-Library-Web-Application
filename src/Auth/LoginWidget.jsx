@@ -1,6 +1,8 @@
 import { Redirect } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
+import { SpinnerLoading } from "../layouts/Utils/SpinnerLoading";
 import OktaSignInWidget from "./OktaSigninWidget";
+
 // {} are part of js's obj destructuring syntax
 // this allows to extract specific properties from an obj
 const LoginWidget = ({ config }) => {
@@ -15,7 +17,7 @@ const LoginWidget = ({ config }) => {
 
     if (!authState) {
         return (
-            <SpinnerLoading/>
+            <SpinnerLoading />
         );
     }
 
