@@ -1,5 +1,6 @@
 import React from "react";
 import BookModel from "../../../models/BookModel";
+import { Link } from "react-router-dom";
 
 // The generic parameter { book: BookModel } following React.FC indicates that the props of this function component
 // include a property named book and its type is BookModel
@@ -29,7 +30,7 @@ export const ReturnBook: React.FC<{book:BookModel}> = (props) => {
             }
                 <h6 className="mt-2">{props.book.title}</h6>
                 <p>{props.book.author}</p>
-                <a className="btn main-color text-white" href="#">Reserve</a>
+                <Link className="btn main-color text-white" to={`checkout/${props.book.id}`}>Reserve</Link>
             </div >
         </div>
     )
