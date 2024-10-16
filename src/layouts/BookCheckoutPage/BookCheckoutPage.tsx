@@ -19,6 +19,9 @@ export const BookCheckoutPage = () => {
     const [totalStars, setTotalStars] = useState(0);
     const [isLoadingReview, setIsLoadingReview] = useState(true);
 
+    const [isReviewLeft, setIsReviewLeft] = useState(false);
+    const [isLoadingUserReview, setIsLoadingUserReview] = useState(true);
+
     // Loans Count State
     const [currentLoansCount, setCurrentLoansCount] = useState(0)
     const [isLoadingCurrentLoansCount,setIsLoadingCurrentLoansCount] = useState(true)
@@ -74,7 +77,7 @@ export const BookCheckoutPage = () => {
             setIsLoading(false)
             setHttpError(error.message)
         })
-    }, []);
+    }, [isCheckedOut]);
 
     useEffect(() => {
         const fetchBookReviews = async () => {
@@ -122,6 +125,8 @@ export const BookCheckoutPage = () => {
         })
 
     }, [])
+
+    
 
     useEffect(() => {
         const fetchUserCurrentLoansCount = async () => {
