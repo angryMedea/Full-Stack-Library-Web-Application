@@ -124,7 +124,7 @@ export const BookCheckoutPage = () => {
             setHttpError(error.message);
         })
 
-    }, [])
+    }, [isReviewLeft])
 
     useEffect(() => {
         const fetchUserReviewBook = async () => {
@@ -179,7 +179,7 @@ export const BookCheckoutPage = () => {
             setIsLoadingCurrentLoansCount(false)
             setHttpError(error.message)
         })
-    }, [authState])
+    }, [authState,isCheckedOut])
 
     useEffect(() => {
         const fetchUserCheckedOutBook = async() => {
@@ -212,7 +212,7 @@ export const BookCheckoutPage = () => {
 
     },[authState])
 
-    if (isLoading || isLoadingReview || isLoadingCurrentLoansCount || isLoadingBookCheckedOut) {
+    if (isLoading || isLoadingReview || isLoadingCurrentLoansCount || isLoadingBookCheckedOut || isLoadingUserReview) {
         return (
             <SpinnerLoading />
         )
@@ -270,7 +270,8 @@ export const BookCheckoutPage = () => {
                         <CheckoutAndReviewBox book={book} mobile={false} currentLoansCount={currentLoansCount} 
                         isAuthenticated={authState?.isAuthenticated}
                         isCheckedOut={isCheckedOut}
-                        checkoutBook={checkoutBook}/>
+                        checkoutBook={checkoutBook}
+                        isReviewLeft={isReviewLeft}/>
                 </div>
                 <hr />
                 <LatestReviews reviews={reviews} bookId={book?.id} mobile={false} />
@@ -296,7 +297,8 @@ export const BookCheckoutPage = () => {
                 </div>
                 <CheckoutAndReviewBox book={book} mobile={true} currentLoansCount={currentLoansCount} 
                     isAuthenticated={authState?.isAuthenticated} isCheckedOut={isCheckedOut} 
-                    checkoutBook={checkoutBook}/>
+                    checkoutBook={checkoutBook}
+                    isReviewLeft={isReviewLeft}/>
                 <hr/>
                 <LatestReviews reviews={reviews} bookId={book?.id} mobile={true} />
 
