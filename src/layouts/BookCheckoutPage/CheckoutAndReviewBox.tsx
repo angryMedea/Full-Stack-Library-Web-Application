@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import BookModel from "../../models/BookModel";
+import { LeaveAReview } from "../Utils/LeaveAReview";
 
 // | undefined: This means that the book property can either be of type BookModel or undefined. 
 // This is useful for handling cases where a book may not be provided (e.g., the component is used before the book data is loaded).
@@ -28,7 +29,7 @@ export const CheckoutAndReviewBox: React.FC<{
         if (props.isAuthenticated && !props.isReviewLeft) {
             return (
                 <p>
-                    Leave a review component.
+                    <LeaveAReview />
                 </p>
             )
         } else if (props.isAuthenticated && props.isReviewLeft) {
