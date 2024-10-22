@@ -4,12 +4,12 @@ import { StarsReview } from './StarsReview';
 export const LeaveAReview: React.FC<{}> = (props) => {
 
     const [starInput, setStarInput] = useState(0);
-    // const [displayInput, setDisplayInput] = useState(false);
-    // const [reviewDescription, setReviewDescription] = useState('');
+    const [displayInput, setDisplayInput] = useState(false);
+    const [reviewDescription, setReviewDescription] = useState('');
 
     function starValue(value: number) {
         setStarInput(value);
-        // setDisplayInput(true);
+        setDisplayInput(true);
     }
 
     return (
@@ -32,7 +32,8 @@ export const LeaveAReview: React.FC<{}> = (props) => {
             </ul>
             <StarsReview rating={starInput} size={32}/>
 
-            {/* {displayInput && 
+            {/* only if displayInput is true, then the right part will be rendered */}
+            {displayInput && 
                 <form method='POST' action='#'>
                     <hr/>
 
@@ -46,10 +47,11 @@ export const LeaveAReview: React.FC<{}> = (props) => {
                     </div>
 
                     <div>
-                        <button type='button' onClick={() => props.submitReview(starInput, reviewDescription)} className='btn btn-primary mt-3'>Submit Review</button>
+                        {/* <button type='button' onClick={() => props.submitReview(starInput, reviewDescription)} className='btn btn-primary mt-3'>Submit Review</button> */}
+                        <button type='button' className='btn btn-primary mt-3'>Submit Review</button>
                     </div>
                 </form>
-            } */}
+            }
 
         </div>
     );
