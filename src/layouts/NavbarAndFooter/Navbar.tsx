@@ -38,6 +38,13 @@ export const Navbar = () => {
           <li className='nav-item'>
             <NavLink className='nav-link' to='/search'>Search Books</NavLink>
           </li>
+          {authState.isAuthenticated &&
+            <li className="nav-item">
+              <NavLink className='nav-link' to='/shelf'>Shelf</NavLink>
+            </li>
+          
+          
+          }
         </ul>
         {/* ms-auto: automatically set the margin from the left side and align with the right side */}
         <ul className='navbar-nav ms-auto'>
