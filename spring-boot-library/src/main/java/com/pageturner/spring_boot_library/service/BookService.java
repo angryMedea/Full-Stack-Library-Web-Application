@@ -122,17 +122,16 @@ public class BookService {
         bookRepository.save(book.get());
         checkoutRepository.deleteById(validateCheckout.getId());
 
-        History history = new History(userEmail,
+        History history = new History(
+                userEmail,
                 validateCheckout.getCheckoutDate(),
-                validateCheckout.getReturnDate(),
+                LocalDate.now().toString(),
                 book.get().getTitle(),
                 book.get().getAuthor(),
                 book.get().getDescription(),
                 book.get().getImg());
 
         historyRepository.save(history);
-
-
     }
 
     public void renewLoan (String userEmail, Long bookId) throws Exception {
