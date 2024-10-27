@@ -1,6 +1,7 @@
 package com.pageturner.spring_boot_library.config;
 
 import com.pageturner.spring_boot_library.entity.Book;
+import com.pageturner.spring_boot_library.entity.Message;
 import com.pageturner.spring_boot_library.entity.Review;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.repository.config.RepositoryConfiguration;
@@ -32,9 +33,11 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
         config.exposeIdsFor(Book.class);
         config.exposeIdsFor(Review.class);
+        config.exposeIdsFor(Message.class);
 
         disableHttpMethods(Book.class,config,theUnsupportedActions);
         disableHttpMethods(Review.class,config,theUnsupportedActions);
+        disableHttpMethods(Message.class,config,theUnsupportedActions);
 
         // bec the front end and backend are in different domains
         cors.addMapping(config.getBasePath() + "/**")
