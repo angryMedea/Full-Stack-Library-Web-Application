@@ -1,6 +1,7 @@
 package com.pageturner.spring_boot_library.controller;
 
 import com.pageturner.spring_boot_library.entity.Message;
+import com.pageturner.spring_boot_library.requestmodels.AdminQuestionRequest;
 import com.pageturner.spring_boot_library.service.MessageService;
 import com.pageturner.spring_boot_library.utils.ExtractJWT;
 import org.springframework.web.bind.annotation.*;
@@ -23,5 +24,18 @@ public class MessagesController {
         messageService.postMessage(messageRequest, useEmail);
 
     }
+
+    @PutMapping("/secure/admin/message")
+    public void putMessage(@RequestHeader(value = "Authorization") String token,
+                           @RequestBody AdminQuestionRequest adminQuestionRequest) throws Exception {
+        String useEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
+        String admin = ExtractJWT.payloadJWTExtraction(token, "\"userType\"");
+        if(admin == null || !admin.equals("admin")) {
+            throw new Exception("Administration page only.");
+        }
+        messageService.putMessage(adminQuestionRequest, useEmail);
+    }
+
+
 
 }
