@@ -33,7 +33,7 @@ public class MessageService {
             throw new Exception("Message not found");
         }
 
-        message.get().setUserEmail(userEmail);
+        message.get().setAdminEmail(userEmail);
         message.get().setResponse(adminQuestionRequest.getResponse());
         message.get().setClosed(true);
         messageRepository.save(message.get());
