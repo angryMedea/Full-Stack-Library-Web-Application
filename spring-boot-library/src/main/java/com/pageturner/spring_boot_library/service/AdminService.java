@@ -6,6 +6,7 @@ import com.pageturner.spring_boot_library.dao.ReviewRepository;
 import com.pageturner.spring_boot_library.entity.Book;
 import com.pageturner.spring_boot_library.entity.Checkout;
 import com.pageturner.spring_boot_library.requestmodels.AddBookRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,6 +19,7 @@ public class AdminService {
     private ReviewRepository reviewRepository;
     private CheckoutRepository checkoutRepository;
 
+    @Autowired
     public AdminService(BookRepository bookRepository, ReviewRepository reviewRepository, CheckoutRepository checkoutRepository) {
         this.bookRepository = bookRepository;
         this.reviewRepository = reviewRepository;
@@ -40,7 +42,7 @@ public class AdminService {
     public void decreaseBookQuantity(Long bookId) throws Exception{
         Optional<Book> book = bookRepository.findById(bookId);
 
-        if(!book.isPresent() || book.get().getCopiesAvailable() <= 0 || book.get().getCopies() == 0) {
+        if(!book.isPresent() || book.get().getCopiesAvailable() <= 0 || book.get().getCopies() <= 0) {
             throw new Exception("Book not found or quantity locked");
         }
 
@@ -69,7 +71,7 @@ public class AdminService {
         }
 
         bookRepository.delete(book.get());
-        checkoutRepository.deleteById(bookId);
+        checkoutRepository.deleteAllByBookId(bookId);
         reviewRepository.deleteAllByBookId(bookId);
     }
 }

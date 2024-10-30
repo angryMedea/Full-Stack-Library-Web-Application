@@ -7,13 +7,13 @@ import com.pageturner.spring_boot_library.utils.ExtractJWT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("api/admin")
 public class AdminController {
     private AdminService adminService;
 
-//    @Autowired
+    @Autowired
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
     }
