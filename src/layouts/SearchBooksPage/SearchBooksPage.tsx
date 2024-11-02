@@ -24,7 +24,7 @@ export const SearchBooksPage = () => {
         // async function will return Promise object
         // so fetchBooks is a promise
         const fetchBooks = async () => {
-            const baseUrl: string = "http://localhost:8080/api/books"
+            const baseUrl: string = `${process.env.REACT_APP_API}/books`
             // the carousel conponent includes 9 books
             let url: string = ''
 
